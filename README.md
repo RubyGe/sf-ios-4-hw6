@@ -1,4 +1,4 @@
-# Assignment 6: Core Data
+t# Assignment 6: Core Data
 
 Add persisted data to the provided sample app. The assigned app mimics Apple's Notes app and contains a series of todos for reading from and writing to the database. Implementing these todos will give you familiarity with Core Data and will give you a starting point for using persistence in your final project app.
 

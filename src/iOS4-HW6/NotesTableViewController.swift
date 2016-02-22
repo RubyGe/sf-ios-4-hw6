@@ -12,13 +12,15 @@
 
 import UIKit
 // @TODO 4: import CoreData
+import CoreData
 
 class NotesTableViewController: UITableViewController, NoteDelegate {
     
     // @TODO 5: add a reference to the sharedContext
+    let managedContext = sharedContext()
     
     // @TODO: note! you'll need to change this app from using Strings to using Notes
-    var notes:[String] = []
+    var notes:[Note] = []
     // var notes:[Note] = []
     
     override func viewDidLoad() {
@@ -31,29 +33,49 @@ class NotesTableViewController: UITableViewController, NoteDelegate {
     // @TODO 6: save the data to disk
     func saveData(note:String) {
         // create a new managed object
+        let entity = NSEntityDescription.entityForName("Note", inManagedObjectContext: managedContext)
+        
         // and insert it into the context
+        let noteToSave = Note(entity:entity!, insertIntoManagedObjectContext: managedContext)
         
         // set its attributes
+        noteToSave.text = note
         
         // commit changes to disk
+        do {
+            try managedContext.save()
+            notes.append(noteToSave)
+        } catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
+        }
     }
     
     // @TODO 7: load the data from disk
     func loadData() {
         // create fetch request
+        let fetchRequest = NSFetchRequest(entityName: "Note")
         
         // ask managedcontext to make the request
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
         // if successful store result
+            notes = results as! [Note]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+
     }
     
     // MARK: - Note Delegate
     
     func saveNote(note: String) {
         saveData(note)
-        
         // @TODO: n.b. these two lines may move
-        notes.append(note)
+//        notes.append(note)
         tableView.reloadData()
+        
+        
     }
     
     // MARK: - Table view data source
@@ -70,19 +92,19 @@ class NotesTableViewController: UITableViewController, NoteDelegate {
         // @TODO: once you change the notes array to use Note instead of String, you'll need to toggle the below two blocks
 
         // @TODO: USE THIS BLOCK WITH STRING
-        let note = notes[indexPath.row]
-        let minimum = min(20, note.characters.count)
-        let breakIndex = note.startIndex.advancedBy(minimum)
-        cell.textLabel?.text = note.substringToIndex(breakIndex)
-        cell.detailTextLabel?.text = note.substringFromIndex(breakIndex)
+//        let note = notes[indexPath.row]
+//        let minimum = min(20, note.characters.count)
+//        let breakIndex = note.startIndex.advancedBy(minimum)
+//        cell.textLabel?.text = note.substringToIndex(breakIndex)
+//        cell.detailTextLabel?.text = note.substringFromIndex(breakIndex)
         
         // @TODO USE THIS BLOCK WITH NOTE
-//        if let text = notes[indexPath.row].text {
-//            let minimum = min(20, text.characters.count)
-//            let breakIndex = text.startIndex.advancedBy(minimum)
-//            cell.textLabel?.text = text.substringToIndex(breakIndex)
-//            cell.detailTextLabel?.text = text.substringFromIndex(breakIndex)
-//        }
+        if let text = notes[indexPath.row].text {
+            let minimum = min(20, text.characters.count)
+            let breakIndex = text.startIndex.advancedBy(minimum)
+            cell.textLabel?.text = text.substringToIndex(breakIndex)
+            cell.detailTextLabel?.text = text.substringFromIndex(breakIndex)
+        }
         
         return cell
     }

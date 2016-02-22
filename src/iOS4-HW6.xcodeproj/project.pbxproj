@@ -14,6 +14,8 @@
 		D1FDFC6F1C71D63900D6C78C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1FDFC6D1C71D63900D6C78C /* LaunchScreen.storyboard */; };
 		D1FDFC7A1C71D6D800D6C78C /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FDFC791C71D6D800D6C78C /* NotesTableViewController.swift */; };
 		D1FDFC7C1C71D6F400D6C78C /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FDFC7B1C71D6F400D6C78C /* AddNoteViewController.swift */; };
+		F64A81DC1C7ABDDE001BC85A /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64A81DA1C7ABDDE001BC85A /* Note+CoreDataProperties.swift */; };
+		F64A81DD1C7ABDDE001BC85A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64A81DB1C7ABDDE001BC85A /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D1FDFC701C71D63900D6C78C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1FDFC791C71D6D800D6C78C /* NotesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
 		D1FDFC7B1C71D6F400D6C78C /* AddNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		F64A81DA1C7ABDDE001BC85A /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F64A81DB1C7ABDDE001BC85A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				D1FDFC681C71D63800D6C78C /* iOS4_HW6.xcdatamodeld */,
+				F64A81DA1C7ABDDE001BC85A /* Note+CoreDataProperties.swift */,
+				F64A81DB1C7ABDDE001BC85A /* Note.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -169,6 +175,8 @@
 				D1FDFC6A1C71D63800D6C78C /* iOS4_HW6.xcdatamodeld in Sources */,
 				D1FDFC621C71D63800D6C78C /* AppDelegate.swift in Sources */,
 				D1FDFC7A1C71D6D800D6C78C /* NotesTableViewController.swift in Sources */,
+				F64A81DC1C7ABDDE001BC85A /* Note+CoreDataProperties.swift in Sources */,
+				F64A81DD1C7ABDDE001BC85A /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
