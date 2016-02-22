@@ -63,7 +63,6 @@ class NotesTableViewController: UITableViewController, NoteDelegate {
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
-        
 
     }
     
@@ -83,6 +82,8 @@ class NotesTableViewController: UITableViewController, NoteDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
+    
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("noteCellIdentifier", forIndexPath: indexPath)
@@ -108,6 +109,31 @@ class NotesTableViewController: UITableViewController, NoteDelegate {
         
         return cell
     }
+    
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch editingStyle {
+        case .Delete:
+            managedContext.deleteObject(notes[indexPath.row])
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not delete. Error: \(error)")
+            }
+            notes.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            
+            
+        case .Insert:
+            break
+             
+        default:
+            break
+        }
+        
+        
+    }
+   
     
     // MARK: - Navigation
     
